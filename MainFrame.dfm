@@ -4,7 +4,7 @@ object FormExemploREP: TFormExemploREP
   AlphaBlendValue = 200
   BorderStyle = bsSingle
   Caption = 'Exemplo REP'
-  ClientHeight = 360
+  ClientHeight = 344
   ClientWidth = 470
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,20 +16,6 @@ object FormExemploREP: TFormExemploREP
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object LabelConectar: TLabel
-    Left = 135
-    Top = 30
-    Width = 35
-    Height = 13
-    Caption = 'Status:'
-  end
-  object LabelStatus: TLabel
-    Left = 176
-    Top = 30
-    Width = 68
-    Height = 13
-    Caption = 'Desconectado'
-  end
   object LabelIP: TLabel
     Left = 8
     Top = 8
@@ -39,13 +25,20 @@ object FormExemploREP: TFormExemploREP
   end
   object LabelStatusMostrarUsuarios: TLabel
     Left = 127
-    Top = 100
+    Top = 62
     Width = 3
     Height = 13
   end
+  object LabelPorta: TLabel
+    Left = 135
+    Top = 8
+    Width = 26
+    Height = 13
+    Caption = 'Porta'
+  end
   object ButtonConectar: TButton
-    Left = 8
-    Top = 56
+    Left = 387
+    Top = 25
     Width = 75
     Height = 25
     Caption = 'Conectar'
@@ -54,7 +47,7 @@ object FormExemploREP: TFormExemploREP
   end
   object ButtonMostrarUsuariosPSafeArray: TButton
     Left = 8
-    Top = 95
+    Top = 57
     Width = 217
     Height = 25
     Caption = 'Mostrar usuarios (byte[] / PSafeArray)'
@@ -68,10 +61,10 @@ object FormExemploREP: TFormExemploREP
     Width = 121
     Height = 21
     TabOrder = 2
-    Text = '192.168.110.202'
+    Text = '192.168.121.200'
   end
   object ButtonDesconectar: TButton
-    Left = 89
+    Left = 387
     Top = 56
     Width = 75
     Height = 25
@@ -82,7 +75,7 @@ object FormExemploREP: TFormExemploREP
   end
   object StringGrid1: TStringGrid
     Left = 8
-    Top = 157
+    Top = 119
     Width = 454
     Height = 195
     ColCount = 1
@@ -93,12 +86,32 @@ object FormExemploREP: TFormExemploREP
   end
   object ButtonMostrarUsuariosBase64: TButton
     Left = 8
-    Top = 126
+    Top = 88
     Width = 217
     Height = 25
     Caption = 'Mostrar usuarios (Base64)'
     Enabled = False
     TabOrder = 5
     OnClick = ButtonMostrarUsuariosBase64Click
+  end
+  object EditPort: TEdit
+    Left = 135
+    Top = 27
+    Width = 58
+    Height = 21
+    TabOrder = 6
+    Text = '443'
+  end
+  object StatusBarMainFrame: TStatusBar
+    Left = 0
+    Top = 325
+    Width = 470
+    Height = 19
+    Panels = <>
+    SimplePanel = True
+    SimpleText = 'Desconectado'
+    ExplicitLeft = 128
+    ExplicitTop = 312
+    ExplicitWidth = 0
   end
 end

@@ -1,12 +1,6 @@
 ﻿[ButtonConectar]
 Coordinates=226,78,104,58
 
-[LabelConectar]
-Coordinates=10,78,98,58
-
-[LabelStatus]
-Coordinates=78,146,83,58
-
 [LabelStatusMostrarUsuarios]
 Coordinates=10,10,177,58
 

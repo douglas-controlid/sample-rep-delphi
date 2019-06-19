@@ -8,15 +8,16 @@ uses
 type
   TFormExemploREP = class(TForm)
     ButtonConectar: TButton;
-    LabelConectar: TLabel;
     ButtonMostrarUsuariosPSafeArray: TButton;
-    LabelStatus: TLabel;
     LabelIP: TLabel;
     EditIP: TEdit;
     ButtonDesconectar: TButton;
     LabelStatusMostrarUsuarios: TLabel;
     StringGrid1: TStringGrid;
     ButtonMostrarUsuariosBase64: TButton;
+    LabelPorta: TLabel;
+    EditPort: TEdit;
+    StatusBarMainFrame: TStatusBar;
     procedure ButtonConectarClick(Sender: TObject);
     procedure ButtonDesconectarClick(Sender: TObject);
     procedure ButtonMostrarUsuariosPSafeArrayClick(Sender: TObject);
@@ -189,26 +190,28 @@ procedure TFormExemploREP.ConectarREP;
 var
   IPAddress: String;
   StatusConexao: Integer;
+  Port: Integer;
 
 begin
-  LabelStatus.Caption := 'Conectando...';
+  StatusBarMainFrame.SimpleText := 'Conectando...';
   IPAddress := EditIP.Text;
+  Port := StrToInt(EditPort.Text);
 
   if rep = nil then
   begin
     rep := CoRepCid_.Create;
   end;
 
-  StatusConexao := rep.Conectar(WideString(IPAddress), Integer(443), Cardinal(0));
+  StatusConexao := rep.Conectar(WideString(IPAddress), Port, Cardinal(0));
 
   if StatusConexao = 1 then
   begin
-    LabelStatus.Caption := 'Conectado a ' + IPAddress + ':443';
+    StatusBarMainFrame.SimpleText := 'Conectado a ' + IPAddress + ':' + EditPort.Text;
     REPConectado;
   end
   else
   begin
-    LabelStatus.Caption := 'Não foi possível conectar';
+    StatusBarMainFrame.SimpleText := 'Não foi possível conectar';
     REPDesconectado;
   end;
 end;
@@ -216,13 +219,14 @@ end;
 procedure TFormExemploREP.DesconectarREP;
 begin
   rep.Desconectar;
-  LabelStatus.Caption := 'Desconectado';
+  StatusBarMainFrame.SimpleText := 'Desconectado';
   REPDesconectado;
 end;
 
 procedure TFormExemploREP.REPConectado;
 begin
   EditIP.Enabled := false;
+  EditPort.Enabled := false;
   ButtonConectar.Enabled := false;
   ButtonDesconectar.Enabled := true;
   ButtonMostrarUsuariosPSafeArray.Enabled := true;
@@ -232,6 +236,7 @@ end;
 procedure TFormExemploREP.REPDesconectado;
 begin
   EditIP.Enabled := true;
+  EditPort.Enabled := true;
   ButtonConectar.Enabled := true;
   ButtonDesconectar.Enabled := false;
   ButtonMostrarUsuariosPSafeArray.Enabled := false;
